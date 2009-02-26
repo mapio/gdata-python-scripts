@@ -16,19 +16,19 @@ gd_client.ProgrammaticLogin()
 key = config.get( 'documentspec', 'key' )
 wksht_id = config.get( 'documentspec', 'wksht_id' )
 
-keyfield = config.get( 'parameters', 'keyfield' )
-valuefield = config.get( 'parameters', 'valuefield' )
+keycolumn = config.get( 'parameters', 'keycolumn' )
+valuecolumn = config.get( 'parameters', 'valuecolumn' )
 
 updatemap = dict( [ line.rstrip().split( '\t' ) for line in open( config.get( 'parameters', 'datafile' ) ).readlines() ] )
 
 for entry in gd_client.GetListFeed( key, wksht_id ).entry:
 	entrydict = dict( zip( entry.custom.keys(), [ value.text for value in entry.custom.values() ] ) )
 
-	entrykey = entrydict[ keyfield ]
-	entryvalue = entrydict[ valuefield ]
+	entrykey = entrydict[ keycolumn ]
+	entryvalue = entrydict[ valuecolumn ]
 	if entrykey in updatemap:
-		print "updating row with key {0} from value {1} to {2}".format( entrykey, entrydict[ valuefield ], updatemap[ entrykey ] )
-		entrydict[ valuefield ] = updatemap[ entrykey ]
+		print "updating row with key {0} from value {1} to {2}".format( entrykey, entrydict[ valuecolumn ], updatemap[ entrykey ] )
+		entrydict[ valuecolumn ] = updatemap[ entrykey ]
 		entry = gd_client.UpdateRow( entry, entrydict )
 		del updatemap[ entrykey ]	
 

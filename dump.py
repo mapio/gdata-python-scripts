@@ -1,7 +1,7 @@
 import ConfigParser, gdata.spreadsheet.service, sys
 
 if len( sys.argv ) != 2:
-	print "update.py update.cfg"
+	print "dump.py dump.cfg"
 	exit( -1 )
 
 config = ConfigParser.RawConfigParser()
