@@ -10,7 +10,7 @@ config.read( sys.argv[ 1 ] )
 gd_client = gdata.spreadsheet.service.SpreadsheetsService()
 gd_client.email = config.get( 'credentials', 'email' )
 gd_client.password = config.get( 'credentials', 'password' )
-gd_client.source = 'UPDATE'
+gd_client.source = 'DUMP'
 gd_client.ProgrammaticLogin()
 
 key = config.get( 'documentspec', 'key' )
