@@ -1,4 +1,8 @@
-import ConfigParser, gdata.spreadsheet.service, sys
+import ConfigParser
+import sys
+
+import gdata.spreadsheet.service
+
 
 if len( sys.argv ) != 2:
 	print "update.py update.cfg"

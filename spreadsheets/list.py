@@ -1,6 +1,8 @@
+import ConfigParser
+import sys
+
 import gdata.spreadsheet.service
 
-import ConfigParser, gdata.spreadsheet.service, sys
 
 if len( sys.argv ) != 2:
 	print "list.py list.cfg"
@@ -18,7 +20,7 @@ gd_client.ProgrammaticLogin()
 spreadsheets = gd_client.GetSpreadsheetsFeed()
 for sheet in spreadsheets.entry:
 	name = sheet.title.text 
-	key = sheet.id.text.rsplit('/',1)[-1]
+	key = sheet.id.text.rsplit( '/', 1 )[ -1 ]
 	print name, key
 	try:
 		worksheets = gd_client.GetWorksheetsFeed( key )
@@ -26,6 +28,6 @@ for sheet in spreadsheets.entry:
 		pass
 	for ws in worksheets.entry:
 		name = ws.title.text
-		wksht_id = ws.id.text.rsplit('/',1)[-1]
+		wksht_id = ws.id.text.rsplit( '/', 1 )[ -1 ]
 		print "\t", name , wksht_id
 	
